@@ -41,15 +41,14 @@ def register_notify_callbacks(badge_id='live_notify_badge',menu_id='live_notify_
 
 
 @register.simple_tag(takes_context=True)
-def live_notify_badge(context,badge_id='live_notify_badge',classes="",active_classes="",hide_zero=True):
+def live_notify_badge(context,badge_id='live_notify_badge',classes="",empty_zero=True):
     user = user_context(context)
     if not user:
         return ''
     unread = user.notifications.unread().count()
-    if unread == 0 and hide_zero:
-        return ''
-    if active_classes:
-        classes += ' '+ active_classes
+    if unread == 0 and empty_zero:
+        html="<span id='{badge_id}' class='{classes}'></span>".format(badge_id=badge_id,classes=classes)
+        return html
     html="<span id='{badge_id}' class='{classes}'>{unread}</span>".format(badge_id=badge_id,classes=classes,unread=unread)
     return html
 
