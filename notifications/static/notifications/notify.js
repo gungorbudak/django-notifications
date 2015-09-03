@@ -10,7 +10,9 @@ var registered_functions = [];
 function fill_notification_badge(data) {
     var badge = document.getElementById(notify_badge_id);
     if (badge) {
-        badge.innerHTML = data.unread_count;
+        if (data.unread_count != 0) {
+            badge.innerHTML = data.unread_count;
+        }
     }
 }
 
