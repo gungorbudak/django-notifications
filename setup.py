@@ -36,6 +36,7 @@ setup(name='django-notifications-hq',
                ],
 
       package_data={'notifications': [
+                                 'static/notifications/*',
                                  'templates/notifications/*.html']},
 
       classifiers=[ 'Development Status :: 5 - Production/Stable',
